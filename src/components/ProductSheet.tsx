@@ -118,7 +118,9 @@ function Body({ product: p }: { product: Product }) {
           </fieldset>
         )}
 
-        <div className="sticky bottom-0 mt-auto flex items-center gap-3 bg-paper pb-[env(safe-area-inset-bottom)] pt-6">
+        {/* When stuck it sits on the scroller's edge, past the sheet padding, so it carries its own bottom gap. */}
+        <div className="sticky bottom-0 -mb-4 mt-auto flex items-center gap-3 bg-paper pb-[max(1rem,env(safe-area-inset-bottom))] pt-5 md:mb-0 md:pb-0">
+
           <div className="flex h-14 items-center rounded-full border border-forest/25 px-1.5">
             <button aria-label="Less" disabled={qty === 1} onClick={() => setQty(qty - 1)} className="grid size-11 place-items-center rounded-full disabled:opacity-30"><Minus size={16} /></button>
             <span className="w-6 text-center font-bold tabular-nums">{qty}</span>
