@@ -7,8 +7,9 @@ import type { Product } from "../data/products";
 export function ImageSlot({ product, className }: { product: Product; className?: string }) {
   return (
     <div className={clsx("relative aspect-square overflow-hidden rounded-[28px] bg-paper-2", className)}>
+      {/* Photos are shot on white; multiply lets the white take the tile colour so they sit in the page. */}
       {product.image ? (
-        <img src={product.image} alt={product.name} loading="lazy" className="size-full object-cover" />
+        <img src={product.image} alt={product.name} loading="lazy" width={1000} height={1000} className="size-full object-cover mix-blend-multiply" />
       ) : (
         <div className="grid size-full place-items-center text-forest/25" aria-hidden>
           <div className="flex flex-col items-center gap-3">

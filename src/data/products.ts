@@ -20,7 +20,7 @@ export const categories: Category[] = ["Salads", "Chaat & Fruit", "Breakfast", "
 export const products: Product[] = [
   { id: "protein-crave", name: "Protein Crave", category: "Salads", price: 149, dressing: true,
     ingredients: ["chicken", "egg", "soya", "sweet corn", "groundnut", "white chenna", "black chenna", "cucumber", "carrot", "cabbage", "sprouted green gram"] },
-  { id: "crazy-mix", name: "Crazy Mix", category: "Salads", price: 149, dressing: true,
+  { id: "crazy-mix", name: "Crazy Mix", category: "Salads", price: 149, dressing: true, image: "/products/crazy-mix.jpg",
     ingredients: ["chicken", "egg", "lettuce", "soya", "carrot", "cucumber", "chenna", "sweet corn", "capsicum", "cabbage"] },
   { id: "bombered-chicken-coast", name: "Bombered Chicken Coast", category: "Salads", price: 139, dressing: true,
     ingredients: ["chicken breast", "chenna", "sweet corn", "carrot", "red & green cabbage", "beetroot", "tomato", "cucumber"] },
@@ -30,7 +30,7 @@ export const products: Product[] = [
     ingredients: ["egg", "green peas", "carrot", "cucumber", "lettuce", "groundnut", "coriander", "capsicum", "chinese cabbage"] },
   { id: "classic-veg-salad", name: "Classic Veg Salad", category: "Salads", price: 99, dressing: true,
     ingredients: ["soya beans", "lettuce", "sweet corn", "green peas", "cucumber", "carrot", "cabbage", "onion", "tomato", "groundnut"] },
-  { id: "pineapple-chaat", name: "Pineapple Chaat", category: "Chaat & Fruit", price: 99, dressing: false,
+  { id: "pineapple-chaat", name: "Pineapple Chaat", category: "Chaat & Fruit", price: 99, dressing: false, image: "/products/pineapple-chaat.jpg",
     ingredients: ["pineapple", "pomegranate", "coriander", "chilli", "onion", "tomato", "white chenna"] },
   { id: "musi-fruit-coast", name: "Musi Fruit Coast", category: "Chaat & Fruit", price: 119, dressing: false,
     ingredients: ["apple", "pineapple", "grape", "guava", "anar", "banana", "dates", "honey"] },
