@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eatoxy.shop/sitemap.xml
