@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import { reviews, sampleReviews } from "../data/reviews";
+import { reviews } from "../data/reviews";
 import { chatUrl } from "../lib/whatsapp";
 
 // Busy Bee Honey pattern: solid colour cards, quote set in the display face.
 const tones = ["bg-forest text-paper", "bg-lime text-ink", "bg-kraft text-ink", "bg-paper-2 text-ink"];
 
 export function Reviews() {
-  const list = reviews.length ? reviews : sampleReviews;
+  const list = reviews;
 
   return (
     <section className="px-5 py-28 md:px-10 md:py-36">
@@ -23,12 +23,21 @@ export function Reviews() {
             </a>
           </div>
         ) : (
-          <ul className="-mx-5 mt-14 flex snap-x gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:px-0">
+          <ul className="-mx-5 mt-14 flex snap-x gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:px-0 lg:grid-cols-4">
             {list.map((r, i) => (
-              <li key={i} className={clsx("flex min-h-80 w-[78vw] shrink-0 snap-start flex-col justify-between rounded-[28px] p-7 md:w-auto", tones[i % tones.length])}>
-                <span aria-label="5 stars" className="tracking-[0.3em]">★★★★★</span>
-                <blockquote className="display text-[2rem]">{r.quote}</blockquote>
-                <p className="eyebrow opacity-70">{r.name}</p>
+              <li key={r.name + i} className={clsx("flex min-h-80 w-[80vw] shrink-0 snap-start flex-col gap-6 rounded-[28px] p-7 md:w-auto", tones[i % tones.length])}>
+                <p className="flex items-center justify-between text-sm">
+                  <span aria-hidden className="tracking-[0.3em]">★★★★★</span>
+                  <span className="font-bold">{r.rating}</span>
+                </p>
+                {/* Long quotes step down a size so every card keeps the same rhythm. */}
+                <blockquote className={clsx("display flex-1", r.quote.length > 80 ? "text-[1.45rem] leading-[1.02]" : "text-[2.25rem]")}>
+                  “{r.quote}”
+                </blockquote>
+                <p className="eyebrow">
+                  {r.name}
+                  {r.role && <span className="mt-1 block normal-case tracking-normal opacity-70">{r.role}</span>}
+                </p>
               </li>
             ))}
           </ul>

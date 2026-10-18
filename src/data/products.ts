@@ -36,7 +36,7 @@ export const products: Product[] = [
     ingredients: ["apple", "pineapple", "grape", "guava", "anar", "banana", "dates", "honey"] },
   { id: "classic-oats", name: "Classic Oats", category: "Breakfast", price: 59, dressing: false, image: "/products/classic-oats.jpg",
     ingredients: ["creamy oats", "apple", "banana", "cashew", "pumpkin seed", "sunflower seed", "dried grape", "raisins", "honey"] },
-  { id: "chocolate-oats", name: "Chocolate Oats", category: "Breakfast", price: 79, dressing: false,
+  { id: "chocolate-oats", name: "Chocolate Oats", category: "Breakfast", price: 79, dressing: false, image: "/products/chocolate-oats.jpg",
     ingredients: ["rich chocolate oats", "apple", "banana", "seasonal fruits", "nuts", "seeds", "honey"] },
   { id: "chia-bowl", name: "Chia Bowl", category: "Breakfast", price: 59, dressing: false, image: "/products/chia-bowl.jpg",
     ingredients: ["chia seed", "milk", "banana", "pumpkin seed", "sunflower seed", "dates", "seasonal fruits", "dried grape", "honey", "cashew"] },
