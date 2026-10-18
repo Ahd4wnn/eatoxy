@@ -4,7 +4,9 @@ test("salad order carries item, dressing and total into the WhatsApp link", asyn
   await page.goto("/shop");
   await page.getByRole("button", { name: "Protein Crave, ₹149" }).click();
   const sheet = page.getByRole("dialog", { name: "Protein Crave" });
-  await expect(sheet.getByRole("button", { name: "Choose a dressing" })).toBeDisabled();
+  // Without a dressing the button points back to the step instead of adding.
+  await sheet.getByRole("button", { name: "Choose a dressing" }).click();
+  await expect(page.getByRole("dialog", { name: "Your order" })).toHaveCount(0);
   await sheet.getByRole("button", { name: "Honey Mustard" }).click();
   await sheet.getByRole("button", { name: "More" }).click();
   await sheet.getByRole("button", { name: "Add to order · ₹298" }).click();
