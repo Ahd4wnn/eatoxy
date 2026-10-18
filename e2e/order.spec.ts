@@ -50,10 +50,19 @@ test.describe("phone", () => {
   });
 });
 
-test("footer credit links to f13s and shows its card on hover", async ({ page }) => {
+test("footer credit card opens and Start a project goes to f13s contact", async ({ page, context }) => {
+  await context.route("https://f13s.com/**", (r) => r.fulfill({ body: "f13s stub", contentType: "text/html" }));
   await page.goto("/");
   const credit = page.getByRole("link", { name: /Website made by f13s/ });
   await expect(credit).toHaveAttribute("href", "https://f13s.com");
   await credit.hover();
-  await expect(page.getByRole("tooltip")).toContainText("Independent minds. Shared ambition.");
+  const card = page.getByRole("group", { name: "About f13s" });
+  await expect(card).toContainText("Independent minds. Shared ambition.");
+
+  // Travel up across the gap like a real pointer; the card must stay open.
+  const cta = card.getByRole("link", { name: /Start a project/ });
+  const box = (await cta.boundingBox())!;
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 12 });
+  const [popup] = await Promise.all([context.waitForEvent("page"), cta.click()]);
+  await expect(popup).toHaveURL("https://f13s.com/contact");
 });

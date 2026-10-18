@@ -13,11 +13,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const link = "flex items-center gap-2 transition-colors hover:text-forest/60";
 
-// Claims are only what f13s.com itself says.
+// Claims and links are only what f13s.com itself has.
+const F13S = "https://f13s.com";
 const f13s = [
-  ["Media", "Campaigns, video and AI video"],
-  ["AI agents", "Customer care and workflow automation"],
-  ["Software", "Apps, websites and web apps"],
+  ["Media", "Campaigns, video and AI video", "/services/media"],
+  ["AI agents", "Customer care and workflow automation", "/services/ai-agents"],
+  ["Software", "Apps, websites and web apps", "/services/software-development"],
 ];
 
 /** Studio credit. Hover/focus shows a card on pointer devices; touch gets a one-line subtitle instead. */
@@ -25,48 +26,62 @@ function MadeBy() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="f13s-card"
-            role="tooltip"
-            initial={{ opacity: 0, y: 8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-full right-0 z-20 mb-3 hidden w-80 origin-bottom-right rounded-[24px] bg-forest p-6 text-paper shadow-[0_24px_60px_-20px_rgba(22,38,15,0.55)] [@media(hover:hover)]:block"
-          >
-            <p className="display text-4xl normal-case text-lime">f13s</p>
-            <p className="mt-1 text-sm text-paper/70">Independent minds. Shared ambition.</p>
-            <ul className="mt-5 space-y-3 border-t border-paper/15 pt-4">
-              {f13s.map(([title, body]) => (
-                <li key={title} className="text-sm">
-                  <span className="font-bold text-paper">{title}</span>
-                  <span className="block text-paper/65">{body}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-bold text-ink">
-              Start a project <ArrowUpRight size={16} />
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      // Stay open while focus moves from the credit into the card's links.
+      onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}
+    >
       <a
-        href="https://f13s.com"
+        href={F13S}
         target="_blank"
         rel="noopener"
-        aria-describedby="f13s-card"
-        onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
         className="group inline-flex min-h-11 items-center gap-1.5 text-forest/70 transition-colors hover:text-forest"
       >
         Website made by <span className="font-bold text-forest underline decoration-lime decoration-2 underline-offset-4">f13s</span>
         <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       </a>
       <p className="text-forest/50 [@media(hover:hover)]:hidden">Media, AI agents & software studio</p>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            // pb-3 (not mb-3) so the gap above the credit still counts as hovering the card.
+            className="absolute bottom-full right-0 z-20 hidden w-80 origin-bottom-right pb-3 [@media(hover:hover)]:block"
+          >
+            <div aria-label="About f13s" role="group" className="rounded-[24px] bg-forest p-6 text-paper shadow-[0_24px_60px_-20px_rgba(22,38,15,0.55)]">
+              <a href={F13S} target="_blank" rel="noopener" className="display text-4xl normal-case! text-lime hover:text-paper">f13s</a>
+              <p className="mt-1 text-sm text-paper/70">Independent minds. Shared ambition.</p>
+              <ul className="mt-5 space-y-1 border-t border-paper/15 pt-3">
+                {f13s.map(([title, body, path]) => (
+                  <li key={title}>
+                    <a href={F13S + path} target="_blank" rel="noopener" className="group/s -mx-2 block rounded-xl px-2 py-1.5 text-sm transition-colors hover:bg-paper/10">
+                      <span className="flex items-center gap-1 font-bold text-paper">
+                        {title} <ArrowUpRight size={13} className="opacity-0 transition-opacity group-hover/s:opacity-100" />
+                      </span>
+                      <span className="block text-paper/65">{body}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={`${F13S}/contact`}
+                target="_blank"
+                rel="noopener"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-bold text-ink transition-transform hover:scale-[1.04]"
+              >
+                Start a project <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
