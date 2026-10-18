@@ -42,7 +42,7 @@ function Hero() {
         <div className="mt-10 grid items-end gap-10 md:grid-cols-[1fr_minmax(0,26rem)_1fr]">
           <div ref={bowl} className="relative mx-auto w-[min(80vw,26rem)] md:order-2">
             <button onClick={() => view(hero.id)} className="block w-full" aria-label={`${hero.name}, ${rupees(hero.price)}`}>
-              <ImageSlot product={hero} />
+              <ImageSlot product={hero} eager />
             </button>
             <span className="display pointer-events-none absolute -right-3 -top-5 grid size-28 rotate-[10deg] place-items-center rounded-full bg-lime text-center text-[1.35rem] text-ink md:-right-10 md:size-32">
               {hero.name}<br />{rupees(hero.price)}
