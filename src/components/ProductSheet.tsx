@@ -35,6 +35,7 @@ export function ProductSheet() {
           />
           <motion.div
             role="dialog" aria-modal="true" aria-label={product.name}
+            data-lenis-prevent
             initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 60 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-x-3 bottom-3 z-[70] max-h-[calc(100svh-1.5rem)] overflow-y-auto rounded-[2rem] bg-paper md:inset-x-0 md:top-1/2 md:bottom-auto md:mx-auto md:max-w-4xl md:-translate-y-1/2"

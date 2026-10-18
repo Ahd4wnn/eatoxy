@@ -24,6 +24,7 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
       {open && (
         <motion.nav
           aria-label="Main"
+          data-lenis-prevent
           initial={{ clipPath: "inset(0 0 100% 0 round 2rem)" }}
           animate={{ clipPath: "inset(0 0 0% 0 round 2rem)" }}
           exit={{ clipPath: "inset(0 0 100% 0 round 2rem)" }}

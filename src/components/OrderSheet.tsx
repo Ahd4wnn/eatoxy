@@ -40,6 +40,7 @@ export function OrderSheet() {
           />
           <motion.aside
             role="dialog" aria-modal="true" aria-label="Your order"
+            data-lenis-prevent
             initial={{ x: "110%" }} animate={{ x: 0 }} exit={{ x: "110%" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="fixed bottom-3 right-3 top-3 z-[70] flex w-[min(30rem,calc(100%-1.5rem))] flex-col rounded-[2rem] bg-paper p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-[0_24px_80px_-24px_rgba(22,38,15,0.45)]"
